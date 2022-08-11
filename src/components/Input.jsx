@@ -6,45 +6,42 @@ function Input(props) {
         content: ""
     });
 
-    const handleChangeTitle = (event) => {
-        event.persist();
-        setNote((note) => ({
-            ...note,
-            title: event.target.value
-        }));
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+
+        setNote(prevNote => {
+            return {
+                ...prevNote,
+                [name] : value
+            };
+        });
     };
 
-    const handleChangeContent = (event) => {
-        event.persist();
-        setNote((note) => ({
-            ...note,
-            content: event.target.value
-        }));
-    };
+    const submitNote = (event) => {
+        props.onAdd(note);
+        event.preventDefault();
+    }
 
     return (
         <div>
             <form>
                 <input 
-                 onChange={handleChangeTitle}
+                 onChange={handleChange}
                  value={note.title}
                  type="text"
                  name="title" 
                  placeholder="Title"
                 ></input>
-                <input
-                 onChange={handleChangeContent}
+                <textarea
+                 onChange={handleChange}
                  value={note.content} 
                  type="text"
                  name="content" 
-                 placeholder="Take a note..."></input>
+                 placeholder="Take a note...">
+                </textarea>
                 <button
                  type="button"
-                 onClick={() => {
-                    props.onAdd(note);
-                    setNote("");
-                 }}
-                >
+                 onClick={submitNote}>
                  <span>Add</span>
                 </button>
             </form>

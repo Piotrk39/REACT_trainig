@@ -7,37 +7,37 @@ import Note from "./Note";
 
 function App() {
 
-    const [items, setItems] = useState([]);
+    const [notes, setNotes] = useState([]);
 
-    const addItem = (note) => {
-      setItems(prevItems => {
-        return [...prevItems, note];
-      });
-      console.log(note);
+    const addNote = (newNote) => {
+      setNotes(prevNotes => {
+        return [...prevNotes, newNote];
+      })
     }
 
-    const deleteItem = (id) => {
-        setItems(prevItems => {
-          return prevItems.filter((item, index) => {
-            return index !== id;
-          });
-        });
+    const deleteNote = (id) => {
+      setNotes(prevNotes => {
+        return prevNotes.filter((noteItem, index) => {
+          return index !== id;
+        })
+      })
     }
 
     return (
         <div>
             <Header />
             <Input 
-             onAdd={addItem}
+             onAdd={addNote}
             />
-            {items.map((note, index) => (
-                <Note 
+            {notes.map((noteItem, index) => {
+                return <Note
                     key={index}
-                    id={index}
-                    text={note}
-                    onClick={deleteItem}
+                    id={index} 
+                    title={noteItem.title}
+                    content={noteItem.content}
+                    onDelete={deleteNote}
                 />
-            ))}
+            })}
             <Footer />
         </div>
     );
