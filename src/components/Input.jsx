@@ -19,12 +19,16 @@ function Input(props) {
 
     const submitNote = (event) => {
         props.onAdd(note);
+        setNote({
+            title: "",
+            content: ""
+        });
         event.preventDefault();
     }
 
     return (
         <div>
-            <form>
+            <form className="create-note">
                 <input 
                  onChange={handleChange}
                  value={note.title}
