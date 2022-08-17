@@ -42,6 +42,15 @@ header {
   font-family: 'Anton', sans-serif;
 }
 
+.icon{
+  color: #f5ba13;
+}
+
+.icon:hover {
+  color: #000;
+}
+
+
 .paragraph {
   color: #000;
 }

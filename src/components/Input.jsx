@@ -15,6 +15,10 @@ function Input(props) {
         setExpand(true);
     }
 
+    const handleZoomOut = () => {
+        setExpand(false);
+    }
+
     const handleChange = (event) => {
         const {name, value} = event.target;
 
@@ -37,18 +41,22 @@ function Input(props) {
 
     return (
         <div>
-            <form className="create-note">
-                <input
-                 onClick={handleZoom} 
+            <form
+             className="create-note"
+            >
+                <textarea 
+                 onClick={handleZoom}
                  onChange={handleChange}
                  value={note.title}
                  type="text"
                  name="title" 
                  placeholder="Title"
+                 rows={1}
                 >
-                </input>
+                </textarea>
                 {expand &&
                 <textarea
+                 onClick={handleZoom}
                  onChange={handleChange}
                  value={note.content} 
                  type="text"
@@ -59,7 +67,7 @@ function Input(props) {
                 </textarea>
                 }
                 <Zoom in={expand}>
-                 <Fab sx={{ backgroundColor: "#f5ba13" }} onClick={submitNote}>
+                 <Fab sx={{ backgroundColor: "#f5ba13" }} onClick={submitNote} onBlur={handleZoomOut}>
                   <AddIcon sx={{ color: "black" }}/>
                  </Fab>  
                 </Zoom>             

@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import Input from "./Input";
 import Note from "./Note";
 
-
 function App() {
 
     const [notes, setNotes] = useState([]);
